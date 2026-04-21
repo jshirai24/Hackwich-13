@@ -12,7 +12,8 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var slider: UISlider!
     var currentValue: Float = 0
-    
+    var targetValue: Int = 0
+    //this is the target value
     
     
     override func viewDidLoad() {
@@ -20,14 +21,18 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         currentValue = slider.value
+        //assigning target value to a random int
+        targetValue = Int.random(in: 1...100)
         
+        //call new round function
+        restartRound()
     }
    
 
     @IBAction func myGuessButtonPressed(_ sender: Any)
     {
         
-        let message = "The value is \(currentValue)"
+        let message = "The value is \(currentValue) \n The target value is \(targetValue)."
         
         
         let alert = UIAlertController(title: "Hello World", message: message, preferredStyle: .alert)
@@ -35,6 +40,8 @@ class ViewController: UIViewController {
         
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
+        
+        restartRound()
         
     }
     
@@ -46,7 +53,11 @@ class ViewController: UIViewController {
         
     }
     
-    
+    func restartRound()
+        {
+            targetValue = Int.random(in: 1...100)
+            currentValue = slider.value
+        }
     
     
     
